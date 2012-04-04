@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+
+import os, sys
+
+"""
+Checks your git commit with JSHint. Only checks staged files
+"""
+def jshint():
+    
+    results = []
+    
+    # get all staged files
+    f = os.popen('git diff-index --name-only --cached HEAD')
+    
+    for file in f.readlines():
+        g = os.popen('jshint ' + file)
+        
+        # add all errors from all files together
+        for error in g.readlines():
+            results.append(error)
+    
+    # got errors?
+    if results:
+		for i, v in enumerate(results):
+		    print '\033[0;31m' + v + '\033[0m',
+		
+		# Abort the commit
+		sys.exit(1) 
+    
+    # All good
+    sys.exit(0) 
+    
+if __name__ == '__main__':
+    jshint()

@@ -7,7 +7,7 @@ Checks your git commit with JSHint. Only checks staged files
 """
 def jshint():
     
-    results = []
+    errors = []
     
     # get all staged files
     f = os.popen('git diff-index --name-only --cached HEAD')
@@ -17,12 +17,12 @@ def jshint():
         
         # add all errors from all files together
         for error in g.readlines():
-            results.append(error)
+            errors.append(error)
     
     # got errors?
-    if results:
-		for i, v in enumerate(results):
-		    print '\033[0;31m' + v + '\033[0m',
+    if errors:
+		for i, error in enumerate(errors):
+		    print error,
 		
 		# Abort the commit
 		sys.exit(1) 

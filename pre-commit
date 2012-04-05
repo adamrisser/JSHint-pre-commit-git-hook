@@ -21,11 +21,11 @@ def jshint():
     
     # got errors?
     if errors:
-		for i, error in enumerate(errors):
-		    print error,
+        for i, error in enumerate(errors):
+            print error,
 		
-		# Abort the commit
-		sys.exit(1) 
+        # Abort the commit
+        sys.exit(1) 
     
     # All good
     sys.exit(0) 

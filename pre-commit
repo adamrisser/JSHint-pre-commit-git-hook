@@ -10,7 +10,7 @@ def jshint():
     errors = []
     
     # get all staged files
-    f = os.popen('git diff-index --name-only --cached HEAD')
+    f = os.popen('git diff --cached --name-only --diff-filter=ACM')
     
     for file in f.readlines():
         g = os.popen('jshint ' + file)

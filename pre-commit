@@ -12,7 +12,7 @@ def jshint():
     # get all staged files
     f = os.popen('git diff --cached --name-only --diff-filter=ACM')
     
-    for file in f.readlines():
+    for file in f.read().splitlines():
 
         # makes sure we're dealing javascript files
         if file.endswith('.js'):    	

@@ -13,11 +13,15 @@ def jshint():
     f = os.popen('git diff --cached --name-only --diff-filter=ACM')
     
     for file in f.readlines():
-        g = os.popen('jshint ' + file)
+
+        # makes sure we're dealing javascript files
+        if file.endswith('.js'):    	
+
+            g = os.popen('jshint ' + file)
         
-        # add all errors from all files together
-        for error in g.readlines():
-            errors.append(error)
+            # add all errors from all files together
+            for error in g.readlines():
+                errors.append(error)
     
     # got errors?
     if errors:

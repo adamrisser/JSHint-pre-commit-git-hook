@@ -15,7 +15,7 @@ def jshint():
     for file in f.read().splitlines():
 
         # makes sure we're dealing javascript files
-        if file.endswith('.js'):    	
+        if file.endswith('.js') and not file.startswith('node_modules/'):    	
 
             g = os.popen('jshint ' + file)
         
